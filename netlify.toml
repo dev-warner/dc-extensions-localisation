@@ -1,0 +1,12 @@
+[build]
+  command = "npm run build"
+  functions = "functions"
+  publish = "build"
+
+[dev]
+  command = "npm start"
+  port = 3000
+  functionsPort = 34567
+  targetPort = 3000
+  publish = "dist"
+
