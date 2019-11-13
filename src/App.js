@@ -1,6 +1,6 @@
 import React from 'react';
-import { useExtension } from './hooks/initialize';
 import { Localise } from './components/Localise';
+import { useExtension } from './hooks/initialize';
 
 function App() {
   const [sdk, initalData, fetched] = useExtension();
@@ -13,7 +13,9 @@ function App() {
 
   return (
     <div className="App">
-      <Localise sdk={sdk} value={initalData}/>
+      <Localise
+        sdk={sdk}
+        initalData={initalData}/>
     </div>
   );
 }

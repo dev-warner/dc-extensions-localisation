@@ -6,16 +6,15 @@ import { useLocales } from "../hooks/setValue";
 import { Input } from "./Input";
 import { Button } from "./Button";
 
-export function Localise({ sdk, value }) {
+export function Localise({ sdk, initalData }) {
   const {
-    translated,
+    text,
     setText,
+    translated,
     translateText,
     getTranslated,
     updateTranslated,
-    text
-  } = useTranslation(sdk, value);
-
+  } = useTranslation(sdk, initalData)
   useLocales(sdk, translated);
 
   return (
