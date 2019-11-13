@@ -12,12 +12,16 @@ export function Localise({ sdk, value }) {
   
   async function translateText() {
     try {
-      const translations = await translate({
+      const { data } = await translate({
         text,
-        locales: sdk.locales.available
+        locales: sdk.locales.available.map(({ language }) => language)
       });
+
+      const translations = data.reduce((acc, value) => {
+        return Object.assign(acc, {[value.locale]: value.text})
+      }, {});
   
-      setTranslated(translations.data.reduce((acc, value) => Object.assign(acc, {[value.locale]: value.text}, {})));
+      setTranslated(translations);
     }
     catch (e) {
       console.error('couldnt translate');

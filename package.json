@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "dc-extensions-sdk": "^1.0.1",
+    "dotenv": "^8.2.0",
     "netlify-cli": "^2.21.0",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
