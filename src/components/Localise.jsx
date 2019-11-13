@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import { translate } from "../hooks/translate";
+import { defaultValuesFactory } from '../utils/defaultValues';
+import { useLocales } from '../hooks/setValue';
 
-export function Localise({ sdk }) {
-  const [translated, setTranslated] = useState(defaultValues());
+export function Localise({ sdk, value }) {
+  const defaultValues = defaultValuesFactory(sdk);
+  const [translated, setTranslated] = useState(defaultValues(value));
   const [text, setText] = useState([]);
-  
-  function defaultValues() {
-    return sdk.locales.available.reduce((acc, value) =>
-      Object.assign(acc, {[value.language]: ''})
-    , {})
-  }
+
+  useLocales(sdk, translated);
   
   async function translateText() {
     try {
@@ -54,7 +53,7 @@ export function Localise({ sdk }) {
         Click to translate
       </button>
 
-      {sdk.locales.available.map(({ locale, language }) => (
+      {sdk.locales.available.map(({ locale, language, selected }) => (
         <div className="ampx-input__container" key={language}>
           <label className="ampx-input__label">{locale}</label>
           <input
