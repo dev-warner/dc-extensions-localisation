@@ -15,7 +15,7 @@ async function translate({ text, locales }) {
 }
 
 
-export function useTranslation(sdk, value) {
+export function useTranslation(sdk, value, locked) {
   const defaultValues = defaultValuesFactory(sdk);
   const [translated, setTranslated] = useState(defaultValues(value));
   const [text, setText] = useState([]);
@@ -30,8 +30,12 @@ export function useTranslation(sdk, value) {
         locales
       });
   
-      const translations = data.reduce((acc, value) => {
-        return Object.assign(acc, { [value.locale]: value.text });
+      const translations = data.reduce((acc, fetched) => {
+        const complete = locked[fetched.locale] ? getTranslated(fetched.locale) : fetched.text;
+
+        return Object.assign(acc, {
+          [fetched.locale]: complete
+        });
       }, {});
   
       setTranslated(translations);
@@ -53,6 +57,7 @@ export function useTranslation(sdk, value) {
   return {
     text,
     setText,
+    translated,
     getTranslated,
     updateTranslated,
     translateText

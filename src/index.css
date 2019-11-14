@@ -72,8 +72,12 @@ code {
 
 .ampx-input__container--disabled {
   opacity: 0.8;
+}
+
+.ampx-input__container--disabled .ampx-input {
   pointer-events: none;
 }
+
 .ampx-button {
   cursor: pointer;
   border: 0;

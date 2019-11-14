@@ -1,9 +1,7 @@
 import { useEffect } from 'react';
 
 export function useLocales(sdk, translated) {
-  useEffect(() => {
-    setValue();
-  }, [translated]);
+  useEffect(() => { setValue() }, [translated]);
 
   function getCodeFromLang(value) {
     const available =
@@ -13,10 +11,16 @@ export function useLocales(sdk, translated) {
   }
 
   async function setValue() {
-    const values = Object.keys(translated).map(locale => ({
-      locale: getCodeFromLang(locale),
-      value: translated[locale]
-    }));
+    if (!translated) return;
+
+    const values = (
+        Object
+          .keys(translated)
+          .map(locale => ({
+            locale: getCodeFromLang(locale),
+            value: translated[locale]
+          }))
+    );
 
     try {
       const data = {
