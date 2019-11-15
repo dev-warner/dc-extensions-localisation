@@ -15,7 +15,7 @@ async function translate({ text, locales }) {
 }
 
 
-export function useTranslation(sdk, value, locked) {
+export function useTranslation(sdk, value, text, locked) {
   const defaultValues = defaultValuesFactory(sdk);
   const [translated, setTranslated] = useState(defaultValues(value));
   

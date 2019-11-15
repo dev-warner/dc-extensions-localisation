@@ -1,7 +1,7 @@
 import React from "react";
 
 import { useText } from "../hooks/useText";
-import { useLocked } from "../hooks/useLocales";
+import { useLocked } from "../hooks/useLocked";
 import { useLocales } from "../hooks/useLocales";
 import { useReadOnly } from "../hooks/useReadOnly";
 import { useTranslation } from "../hooks/useTranslate";
@@ -14,7 +14,7 @@ export function Localise({ sdk, initalData }) {
   const { text, setText } = useText();
   const { readOnly } = useReadOnly(sdk);
   const { locked, setLockedLocale } = useLocked(sdk);
-  const { translate, translated, actions } = useTranslation(sdk, initalData, locked);
+  const { translate, translated, actions } = useTranslation(sdk, initalData, text, locked);
 
   useLocales(sdk, translated);
 

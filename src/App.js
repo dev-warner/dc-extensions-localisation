@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Localise } from './components/Localise';
-import { useExtension } from './hooks/initialize';
+import { useExtension } from './hooks/useExtension';
 
 function App() {
   const [sdk, initalData, fetched] = useExtension();
