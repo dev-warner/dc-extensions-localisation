@@ -6,7 +6,7 @@ export function Button({ onClick, readOnly, label }) {
   return (
     <button
       className={`ampx-button ampx-button__primary ${isDisabled}`}
-      onClick={readOnly ? onClick : () => {}}
+      onClick={readOnly ?  () => {} : onClick}
     >
       {label}
     </button>
