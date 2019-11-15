@@ -1,6 +1,6 @@
 import util from "util";
-import yandex from "yandex-translate";
 import dotenv from "dotenv";
+import yandex from "yandex-translate";
 
 dotenv.config();
 

@@ -1,21 +1,18 @@
 import React from 'react';
 import { Input } from './Input';
 
-
-
-
-export function InputList({ sdk, getTranslated, updateTranslated, setLockedLocale, locked }) {
+export function InputList({ locales, getTranslated, updateTranslated, setLockedLocale, locked }) {
   return (
-    sdk.locales.available.map(({ locale, language }) => {
+    locales.map(({ locale, language }) => {
       return (
         <Input
-          key={language}
-          value={getTranslated(language)}
-          onChange={e => updateTranslated(language, e.target.value, locked[language])}
           checkbox={true}
           label={locale}
+          key={language}
           locked={locked[language]}
+          value={getTranslated(language)}
           setLocked={setLockedLocale(language)}
+          onChange={e => updateTranslated(language, e.target.value, locked[language])}
         />
       );
     })

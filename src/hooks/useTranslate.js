@@ -18,8 +18,6 @@ async function translate({ text, locales }) {
 export function useTranslation(sdk, value, locked) {
   const defaultValues = defaultValuesFactory(sdk);
   const [translated, setTranslated] = useState(defaultValues(value));
-  const [text, setText] = useState([]);
-  
   
   async function translateText() {
     try {
@@ -55,11 +53,8 @@ export function useTranslation(sdk, value, locked) {
   }
 
   return {
-    text,
-    setText,
     translated,
-    getTranslated,
-    updateTranslated,
-    translateText
+    translate: translateText,
+    actions:{ updateTranslated, getTranslated }
   }
 }

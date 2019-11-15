@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
 import { init } from "dc-extensions-sdk";
+import { useState, useEffect } from "react";
 
 export function useExtension() {
   const [sdk, setSDK] = useState();
