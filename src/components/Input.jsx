@@ -1,7 +1,7 @@
 import React from "react";
 
-export function Input({ onChange, value, label, checkbox, locked, setLocked }) {
-  const disabled = checkbox && locked ? 'ampx-input__container--disabled' : '';
+export function Input({ onChange, value, label, checkbox, locked, setLocked, readOnly }) {
+  const disabled = (checkbox && locked) || readOnly ? 'ampx-input__container--disabled' : '';
 
   return (
     <div className={`ampx-input__container ${disabled}`}>
@@ -18,7 +18,7 @@ export function Input({ onChange, value, label, checkbox, locked, setLocked }) {
           name="lock"
           value={locked}
           onChange={setLocked}
-          style={{ display: checkbox ? '' : 'none' }} />
+          style={{ display: checkbox || readOnly ? '' : 'none' }} />
       </div>
     </div>
   );

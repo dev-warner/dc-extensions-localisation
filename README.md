@@ -3,8 +3,6 @@
 > Translating can be long and painful fast track your inline localisable text with our auto translating custom extension.
 
 
-![Example](https://im6.ezgif.com/tmp/ezgif-6-389cca22ba8f.gif)
-
 ## dev
 
 ```bash

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Localise } from './components/Localise';
 import { useExtension } from './hooks/initialize';
 
