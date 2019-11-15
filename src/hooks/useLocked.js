@@ -1,16 +1,16 @@
 import { useState } from 'react';
 import { useForceUpdate } from './forceUpdate';
 
-function defaultLocked(sdk) {
-  return sdk.locales.available.reduce(
-    (acc, val) => Object.assign(acc, { [val.language]: false }),
+function defaultLocked(locales, value = false) {
+  return locales.reduce(
+    (acc, val) => Object.assign(acc, { [val.language]: value }),
     {}
   );
 }
 
-export function useLocked(sdk) {
+export function useLocked(locales) {
   const update = useForceUpdate();
-  const [locked, setLocked] = useState(defaultLocked(sdk));
+  const [locked, setLocked] = useState(defaultLocked(locales));
 
   function setLockedLocale(locale) {
     return () => {
@@ -19,8 +19,13 @@ export function useLocked(sdk) {
     };
   }
 
+  function lockAll() {
+    setLocked(defaultLocked(locales, true));
+  }
+
   return {
     setLockedLocale,
-    locked
+    lockAll,
+    locked,
   }
 }

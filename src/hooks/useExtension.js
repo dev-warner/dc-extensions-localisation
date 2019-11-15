@@ -3,13 +3,17 @@ import { useState, useEffect } from "react";
 
 export function useExtension() {
   const [sdk, setSDK] = useState();
-  const [fetched, setFetched] = useState(false);
+  const [ready, setFetched] = useState(false);
   const [initalData, setData] = useState(false);
 
   async function initialize() {
-    const sdk = await init();
+    try {
+      const sdk = await init();
 
-    setSDK(sdk);
+      setSDK(sdk);
+    } catch (e) {
+      console.log('Not connected to DC')
+    }
   }
 
   useEffect(() => {
@@ -30,9 +34,11 @@ export function useExtension() {
     fetchInitalData()
   }, [sdk])
 
-  useEffect(() => {
-    initialize();
-  }, []);
+  useEffect(() => { initialize() }, []);
 
-  return [sdk, initalData, fetched]
+  return {
+    sdk,
+    ready,
+    initalData
+  }
 }

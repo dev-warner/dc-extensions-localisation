@@ -1,25 +1,40 @@
 import React from "react";
 
+import LockIcon from '@material-ui/icons/Lock';
+import TextField from "@material-ui/core/TextField";
+import makeStyles from "@material-ui/styles/makeStyles";
+import LockOpenIcon from '@material-ui/icons/LockOpen';
+import InputAdornment from "@material-ui/core/InputAdornment";
+
+const useStyles = makeStyles(theme => ({
+  margin: {
+    marginBottom: theme.spacing(2),
+  },
+}));
+
 export function Input({ onChange, value, label, checkbox, locked, setLocked, readOnly }) {
-  const disabled = (checkbox && locked) || readOnly ? 'ampx-input__container--disabled' : '';
+  const classes = useStyles();
+
+  const lock = {
+    endAdornment: (
+      <InputAdornment position="end">
+        {
+          locked ?
+            <LockIcon onClick={setLocked} /> :
+            <LockOpenIcon onClick={setLocked} />
+        }
+      </InputAdornment>
+    ),
+  };
 
   return (
-    <div className={`ampx-input__container ${disabled}`}>
-      <label className="ampx-input__label">{label}</label>
-      <div style={{ display: "flex" }}>
-        <input
-          className="ampx-input"
-          type="text"
-          value={value}
-          onChange={onChange}
-        />
-        <input
-          type="checkbox"
-          name="lock"
-          value={locked}
-          onChange={setLocked}
-          style={{ display: checkbox && !readOnly ? '' : 'none' }} />
-      </div>
-    </div>
+    <TextField
+      className={classes.margin}
+      label={label}
+      value={value}
+      onChange={onChange}
+      disabled={(checkbox && locked) || readOnly}
+      InputProps={checkbox && !readOnly ? lock : {}}
+    />
   );
 }

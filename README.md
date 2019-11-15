@@ -6,27 +6,22 @@
 ## dev
 
 ```bash
-$ npm run start:all
+$ npm run start
 ```
 
 ## build
 
 ```bash
-$ npm run build && npm run build:lambda
+$ npm run build
 ```
-
-## deploy
-
-Add an enviroment varible `TRANSLATION_API_KEY` and set it too the API key you generate from [Here](https://translate.yandex.com/developers/keys).
-
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/dev-warner/dc-extensions-localisation)
 
 
 ## Register the extension 
 
 - Name your extension
 - Add your extension url
+- Generate API Key API key from [here](https://translate.yandex.com/developers/keys).
+- Add undert installation parmas called TRANSLATION_API_KEY
 
 ### Here is a snippet so you can add your extension easily
 
@@ -42,6 +37,14 @@ Add an enviroment varible `TRANSLATION_API_KEY` and set it too the API key you g
   "ui:extension": {
     "name": "<your name of extension here>"
   }
+}
+```
+
+### Example Installation Params
+
+```json 
+{
+  "TRANSLATION_API_KEY": "trnsl.1.1.20181113T13154q3434df54b6aa.051c8d933f00f1315ba7esaf3497d2922dace4eb64a1"
 }
 ```
 

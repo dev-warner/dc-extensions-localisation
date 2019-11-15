@@ -1,39 +1,42 @@
-import { useEffect } from 'react';
+import { useEffect, useContext, useCallback } from 'react';
+import { ExtensionContext } from '../components/ExtensionProvider';
 
-export function useLocales(sdk, translated) {
-  useEffect(() => { setValue() }, [translated]);
+export function useLocales(translated) {
+    const sdk = useContext(ExtensionContext);
+    const { locales: { available: locales }} = sdk;
+    const { field } = sdk
 
-  function getCodeFromLang(value) {
-    const available =
-      sdk.locales.available.find(({ language }) => language === value) || {};
+    const setValue = useCallback(async () => {
+        if (!translated) return;
 
-    return available.locale;
-  }
+        const schema = 'http://bigcontent.io/cms/schema/v1/core#/definitions/localized-value'
 
-  async function setValue() {
-    if (!translated) return;
+        const getCodeFromLang = value => {
+            const available =
+                locales.find(({ language }) => language === value) || {};
 
-    const values = (
-        Object
-          .keys(translated)
-          .map(locale => ({
+            return available.locale;
+        };
+
+        const values = Object.keys(translated).map(locale => ({
             locale: getCodeFromLang(locale),
             value: translated[locale]
-          }))
-    );
+        }));
 
-    try {
-      const data = {
-        values,
-        _meta: {
-          schema:
-            "http://bigcontent.io/cms/schema/v1/core#/definitions/localized-value"
+        try {
+            const data = {
+                values,
+                _meta: {
+                    schema
+                }
+            };
+            await field.setValue(data);
+        } catch (e) {
+            console.log('Unable to set value');
         }
-      };
-      console.log(data);
-      await sdk.field.setValue(data);
-    } catch (e) {
-      console.log(e);
-    }
-  }
+    }, [field, locales, translated]);
+
+    useEffect(() => {
+        setValue();
+    }, [translated, setValue]);
 }

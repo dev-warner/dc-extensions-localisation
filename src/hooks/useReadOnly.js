@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { ExtensionContext } from '../components/ExtensionProvider';
 
-export function useReadOnly(sdk) {
-  const [readOnly, setReadOnly] = useState(sdk.form.readOnly);
+export function useReadOnly() {
+  const { form } = useContext(ExtensionContext);
+  const [readOnly, setReadOnly] = useState(form.readOnly);
 
-  sdk.form.onReadOnlyChange((read) => setReadOnly(read));
+  form.onReadOnlyChange((read) => setReadOnly(read));
 
   return {
     readOnly

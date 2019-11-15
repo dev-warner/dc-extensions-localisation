@@ -1,10 +1,6 @@
 
-export function defaultValuesFactory(sdk) {
-  return (initalValue) => defaultValues(sdk, initalValue);
-}
-
-function defaultValues(sdk, initalValue) {
-  const values = sdk.locales.available.reduce((acc, value) => {
+export function defaultValues(locales, initalValue) {
+  const values = locales.reduce((acc, value) => {
     if (initalValue && initalValue.values && initalValue.values.length) {
       const text = initalValue.values.find(({locale}) => value.locale === locale) || '';
 

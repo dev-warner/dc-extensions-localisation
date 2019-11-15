@@ -1,6 +1,5 @@
 [build]
-  command = "npm run build && npm run build:lambda"
-  functions = "functions"
+  command = "npm run build"
   publish = "build"
 
 [dev]
@@ -9,10 +8,3 @@
   functionsPort = 34567
   targetPort = 3000
   publish = "dist"
-
-
-[[headers]]
-  for = "/*"
-
-  [headers.values]
-    Access-Control-Allow-Headers = "*"

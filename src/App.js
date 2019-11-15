@@ -1,24 +1,27 @@
 import React from 'react';
 
-import { Localise } from './components/Localise';
 import { useExtension } from './hooks/useExtension';
 
+import { Loading } from './components/Loading';
+import { Localise } from './components/Localise';
+import { ExtensionProvider } from './components/ExtensionProvider';
+
 function App() {
-  const [sdk, initalData, fetched] = useExtension();
+    const { sdk, initalData, ready } = useExtension();
 
-  if (!sdk || !fetched) {
-    return <p>loading...</p>;
-  }
+    if (!sdk || !ready) {
+        return <Loading />;
+    }
 
-  sdk.frame.startAutoResizer();
+    sdk.frame.startAutoResizer();
 
-  return (
-    <div className="App">
-      <Localise
-        sdk={sdk}
-        initalData={initalData}/>
-    </div>
-  );
+    return (
+        <ExtensionProvider value={sdk}>
+            <Localise
+              initalData={initalData}
+              locales={sdk.locales.available} />
+        </ExtensionProvider>
+    );
 }
 
 export default App;

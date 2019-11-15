@@ -1,14 +1,16 @@
 import React from "react";
+import MiButton from '@material-ui/core/Button';
 
 export function Button({ onClick, readOnly, label }) {
-  const isDisabled = readOnly ? 'ampx-button__disabled' : '';
-
   return (
-    <button
-      className={`ampx-button ampx-button__primary ${isDisabled}`}
+    <MiButton
+      variant="contained"
+      color="primary"
+      style={{ marginBottom: '20px' }}
+      disabled={readOnly}
       onClick={readOnly ?  () => {} : onClick}
     >
       {label}
-    </button>
+    </MiButton>
   );
 }

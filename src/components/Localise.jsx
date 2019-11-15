@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useText } from "../hooks/useText";
+import { useInput } from "../hooks/useInput";
 import { useLocked } from "../hooks/useLocked";
 import { useLocales } from "../hooks/useLocales";
 import { useReadOnly } from "../hooks/useReadOnly";
@@ -10,32 +10,38 @@ import { Input } from "./Input";
 import { Button } from "./Button";
 import { InputList } from "./InputList";
 
-export function Localise({ sdk, initalData }) {
-  const { text, setText } = useText();
-  const { readOnly } = useReadOnly(sdk);
-  const { locked, setLockedLocale } = useLocked(sdk);
-  const { translate, translated, actions } = useTranslation(sdk, initalData, text, locked);
+export function Localise({ locales, initalData }) {
+  const { readOnly } = useReadOnly();
+  const [ searchText, setSearchText ] = useInput();
+  const { locked, setLockedLocale, lockAll } = useLocked(locales);
+  const { translate, translated, actions } = useTranslation(
+    searchText,
+    locked,
+    lockAll,
+    initalData
+  );
 
-  useLocales(sdk, translated);
+  useLocales(translated);
 
   return (
     <>
       <Input
-        value={text}
+        value={searchText}
         readOnly={readOnly}
-        onChange={e => setText(e.target.value)}
+        onChange={setSearchText}
         label={"Type text to translate here"}
       />
 
       <Button
         onClick={translate}
         readOnly={readOnly}
-        label={"Click to translate"} />
+        label={"Click to translate"}
+      />
 
       <InputList
         locked={locked}
         readOnly={readOnly}
-        locales={sdk.locales.available}
+        locales={locales}
         setLockedLocale={setLockedLocale}
         getTranslated={actions.getTranslated}
         updateTranslated={actions.updateTranslated}
