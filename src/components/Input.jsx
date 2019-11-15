@@ -18,7 +18,7 @@ export function Input({ onChange, value, label, checkbox, locked, setLocked, rea
           name="lock"
           value={locked}
           onChange={setLocked}
-          style={{ display: checkbox || readOnly ? '' : 'none' }} />
+          style={{ display: checkbox && !readOnly ? '' : 'none' }} />
       </div>
     </div>
   );

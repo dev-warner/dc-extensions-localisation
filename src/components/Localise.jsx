@@ -27,7 +27,10 @@ export function Localise({ sdk, initalData }) {
         label={"Type text to translate here"}
       />
 
-      <Button onClick={translate} label={"Click to translate"} />
+      <Button
+        onClick={translate}
+        readOnly={readOnly}
+        label={"Click to translate"} />
 
       <InputList
         locked={locked}
