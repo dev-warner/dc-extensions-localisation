@@ -16,7 +16,7 @@ export function ExtensionProvider({ children, value }) {
   return (
     <ThemeProvider theme={theme}>
       <ExtensionContext.Provider value={value}>
-        <div className="App">
+        <div className='App'>
           {children}
         </div>
       </ExtensionContext.Provider>

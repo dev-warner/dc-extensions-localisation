@@ -6,7 +6,7 @@ import { Loading } from './components/Loading';
 import { Localise } from './components/Localise';
 import { ExtensionProvider } from './components/ExtensionProvider';
 
-function App() {
+export default function App() {
     const { sdk, initalData, ready } = useExtension();
 
     if (!sdk || !ready) {
@@ -17,11 +17,7 @@ function App() {
 
     return (
         <ExtensionProvider value={sdk}>
-            <Localise
-              initalData={initalData}
-              locales={sdk.locales.available} />
+            <Localise initalData={initalData} locales={sdk.locales.available} />
         </ExtensionProvider>
     );
 }
-
-export default App;

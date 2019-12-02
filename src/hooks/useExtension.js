@@ -1,44 +1,47 @@
-import { init } from "dc-extensions-sdk";
-import { useState, useEffect } from "react";
+import { init } from 'dc-extensions-sdk';
+import { useState, useEffect } from 'react';
 
 export function useExtension() {
-  const [sdk, setSDK] = useState();
-  const [ready, setFetched] = useState(false);
-  const [initalData, setData] = useState(false);
+    const [sdk, setSDK] = useState();
+    const [ready, setFetched] = useState(false);
+    const [initalData, setData] = useState(false);
 
-  async function initialize() {
-    try {
-      const sdk = await init();
+    async function initialize() {
+        try {
+            const sdk = await init();
 
-      setSDK(sdk);
-    } catch (e) {
-      console.log('Not connected to DC')
-    }
-  }
-
-  useEffect(() => {
-    if (!sdk) return;
-
-    async function fetchInitalData() {
-      try {
-        const data = await sdk.field.getValue();
-  
-        setData(data);
-      }
-      catch(e) {}
-      finally {
-        setFetched(true)
-      }
+            setSDK(sdk);
+        }
+        catch (e) {
+            console.log('Not connected to DC');
+        }
     }
 
-    fetchInitalData()
-  }, [sdk])
+    useEffect(() => {
+        if (!sdk) return;
 
-  useEffect(() => { initialize() }, []);
+        async function fetchInitalData() {
+            try {
+                const data = await sdk.field.getValue();
 
-  return {
-    sdk,
-    ready,
-    initalData
-  }
+                setData(data);
+            }
+            catch (e) {}
+            finally {
+                setFetched(true);
+            }
+        }
+
+        fetchInitalData();
+    }, [sdk]);
+
+    useEffect(() => {
+        initialize();
+    }, []);
+
+    return {
+        sdk,
+        ready,
+        initalData
+    };
 }

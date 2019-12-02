@@ -1,10 +1,8 @@
 import { useState } from 'react';
 
-export function useInput() {
-    const [value, setText] = useState([]);
-    const setInput = (e) => setText(e.target.value);
-    return [
-        value,
-        setInput
-    ]
+export function useInput(defaultValue) {
+    const [value, setText] = useState(defaultValue);
+    const onChange = e => setText(e.target.value);
+
+    return [value, onChange];
 }
