@@ -2,7 +2,6 @@
 
 > Translating can be long and painful fast track your inline localisable text with our auto translating custom extension.
 
-![Translate][./assets/translate.gif]
 
 ## dev
 
@@ -15,6 +14,8 @@ $ npm run start
 ```bash
 $ npm run build
 ```
+
+![Translate](translate.gif)
 
 ## Register the extension
 
