@@ -33,9 +33,6 @@
     ]
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.7.1",
-    "netlify-cli": "^2.21.0",
-    "http-proxy-middleware": "^0.20.0",
-    "netlify-lambda": "^1.6.3"
+    "@babel/preset-env": "^7.7.1"
   }
 }

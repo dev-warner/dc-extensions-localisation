@@ -28,13 +28,14 @@ export function useTranslation(text, locked, lockAll, initalValue) {
 
             setTranslated(translations);
             lockAll();
-        } catch (e) {
+        }
+        catch (e) {
             console.error('couldnt translate');
         }
     }
 
     function getTranslated(lang) {
-        return translated[lang];
+        return translated[lang] || '';
     }
 
     function updateTranslated(lang, value) {

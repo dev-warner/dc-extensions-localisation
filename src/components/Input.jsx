@@ -1,10 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import LockIcon from '@material-ui/icons/Lock';
-import TextField from "@material-ui/core/TextField";
-import makeStyles from "@material-ui/styles/makeStyles";
-import LockOpenIcon from '@material-ui/icons/LockOpen';
-import InputAdornment from "@material-ui/core/InputAdornment";
+import TextField from '@material-ui/core/TextField';
+import makeStyles from '@material-ui/styles/makeStyles';
 
 const useStyles = makeStyles(theme => ({
   margin: {
@@ -12,29 +9,13 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export function Input({ onChange, value, label, checkbox, locked, setLocked, readOnly }) {
+export function Input({ ...props }) {
   const classes = useStyles();
-
-  const lock = {
-    endAdornment: (
-      <InputAdornment position="end">
-        {
-          locked ?
-            <LockIcon onClick={setLocked} /> :
-            <LockOpenIcon onClick={setLocked} />
-        }
-      </InputAdornment>
-    ),
-  };
 
   return (
     <TextField
+      {...props}
       className={classes.margin}
-      label={label}
-      value={value}
-      onChange={onChange}
-      disabled={(checkbox && locked) || readOnly}
-      InputProps={checkbox && !readOnly ? lock : {}}
     />
   );
 }
