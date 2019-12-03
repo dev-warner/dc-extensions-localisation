@@ -21,7 +21,7 @@ $ npm run build
 
 -   Name your extension
 -   Add your extension url
--   Generate API Key API key from [here](https://translate.yandex.com/developers/keys).
+-   Generate API Key from [here](https://translate.yandex.com/developers/keys).
 -   Add under installation parmas called TRANSLATION_API_KEY
 
 ### Here is a snippet so you can add your extension easily
