@@ -2,7 +2,6 @@
 
 > Translating can be long and painful fast track your inline localisable text with our auto translating custom extension.
 
-
 ## dev
 
 ```bash
@@ -22,7 +21,7 @@ $ npm run build
 -   Name your extension
 -   Add your extension url
 -   Generate API Key from [here](https://translate.yandex.com/developers/keys).
--   Add under installation parmas called TRANSLATION_API_KEY
+-   Add under installation params called TRANSLATION_API_KEY
 
 ### Here is a snippet so you can add your extension easily
 
