@@ -3,7 +3,7 @@ import { useForceUpdate } from './forceUpdate';
 
 function defaultLocked(locales, value = false) {
     return locales.reduce(
-        (acc, val) => Object.assign(acc, { [val.language]: value }),
+        (acc, val) => Object.assign(acc, { [val.locale]: value }),
         {}
     );
 }

@@ -8,9 +8,9 @@ export function translateFactory(key, getTranslated) {
     }
 
     return async (availableLocales, text, locked) => {
-        const locales = availableLocales.map(({ language }) => language);
+        const langs = availableLocales.map(({ language, locale }) => ({ language, locale }));
 
-        const translated = await getAllTranslated(text, locales);
+        const translated = await getAllTranslated(text, langs);
 
         return requestToMap(translated, locked, getTranslated);
     };
@@ -19,13 +19,13 @@ export function translateFactory(key, getTranslated) {
 function translatorFactory(key) {
     const translator = yandex(key);
 
-    return (text, locale) =>
+    return (text, { locale, language }) =>
         new Promise((resolve, reject) => {
-            translator.translate(text, { to: locale }, (err, data) => {
+            translator.translate(text, { to: language }, (err, data) => {
                 if (data.code === 502) reject('Invalid API Key');
-                if (data.code !== 200 || err) resolve({ text: '', locale });
+                if (data.code !== 200 || err) resolve({ text: '', locale, language });
 
-                resolve({ text: data.text[0], locale });
+                resolve({ text: data.text[0], locale, language });
             });
         });
 }

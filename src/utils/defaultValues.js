@@ -8,10 +8,10 @@ export function defaultValues(locales, initalValue) {
               ''
             );
 
-            return Object.assign(acc, { [value.language]: text.value });
+            return Object.assign(acc, { [value.locale]: text.value });
         }
 
-        return Object.assign(acc, { [value.language]: '' });
+        return Object.assign(acc, { [value.locale]: '' });
     }, {});
 
     return values;
