@@ -12,13 +12,13 @@ export function LocaleList({
   updateTranslated
 }) {
 
-  return locales.map(({ locale, language }) => {
+  return locales.map(({ locale }) => {
     const locked = isLocked(locale);
 
     return (
       <Input
         key={locale}
-        label={locale}
+        label={locales}
         value={getTranslated(locale)}
         disabled={locked || readOnly}
         multiline={true}
