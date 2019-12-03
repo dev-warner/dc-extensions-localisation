@@ -13,17 +13,17 @@ export function LocaleList({
 }) {
 
   return locales.map(({ locale, language }) => {
-    const locked = isLocked(language);
+    const locked = isLocked(locale);
 
     return (
       <Input
-        key={language}
+        key={locale}
         label={locale}
-        value={getTranslated(language)}
+        value={getTranslated(locale)}
         disabled={locked || readOnly}
         multiline={true}
         onChange={e => updateTranslated(
-          language,
+          locale,
           e.target.value,
           locked
         )}
@@ -31,7 +31,7 @@ export function LocaleList({
           endAdornment: (
             <Lock
               locked={locked}
-              onClick={setLockedLocale(language)}
+              onClick={setLockedLocale(locale)}
             />
           )
         }}

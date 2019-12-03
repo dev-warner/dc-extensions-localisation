@@ -34,12 +34,12 @@ export function useTranslation(text, locked, lockAll, initalValue) {
         }
     }
 
-    function getTranslated(lang) {
-        return translated[lang] || '';
+    function getTranslated(locale) {
+        return translated[locale] || '';
     }
 
-    function updateTranslated(lang, value) {
-        const updated = Object.assign({}, translated, { [lang]: value });
+    function updateTranslated(locale, value) {
+        const updated = Object.assign({}, translated, { [locale]: value });
 
         setTranslated(updated);
     }
