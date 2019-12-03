@@ -29,6 +29,7 @@ export function Localise({ locales, initalData }) {
         value={searchText}
         disabled={readOnly}
         onChange={onSearchTextChange}
+        multiline={true}
         label={'Type text to translate here'}
       />
 

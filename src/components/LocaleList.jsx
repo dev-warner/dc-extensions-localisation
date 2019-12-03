@@ -21,6 +21,7 @@ export function LocaleList({
         label={locale}
         value={getTranslated(language)}
         disabled={locked || readOnly}
+        multiline={true}
         onChange={e => updateTranslated(
           language,
           e.target.value,
