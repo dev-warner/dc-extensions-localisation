@@ -2,6 +2,8 @@
 
 # dc-extension-localise
 
+![Travis](https://img.shields.io/travis/dev-warner/dc-extensions-localisation)
+
 > Translating can be long and painful fast track your inline localisable text with our auto translating custom extension.
 
 ## dev
