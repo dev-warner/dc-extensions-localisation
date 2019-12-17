@@ -18,7 +18,7 @@ export function LocaleList({
     return (
       <Input
         key={locale}
-        label={locales}
+        label={locale}
         value={getTranslated(locale)}
         disabled={locked || readOnly}
         multiline={true}

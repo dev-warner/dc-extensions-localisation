@@ -33,6 +33,11 @@
     ]
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.7.1"
+    "@babel/preset-env": "^7.7.1",
+    "@testing-library/react-hooks": "^3.2.1",
+    "@types/enzyme": "^3.10.4",
+    "@types/jest": "^24.0.23",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1"
   }
 }

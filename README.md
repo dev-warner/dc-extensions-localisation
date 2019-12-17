@@ -1,3 +1,5 @@
+[![Amplience Dynamic Content](header.png)](https://amplience.com/dynamic-content)
+
 # dc-extension-localise
 
 > Translating can be long and painful fast track your inline localisable text with our auto translating custom extension.
